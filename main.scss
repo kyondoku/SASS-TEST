@@ -305,7 +305,7 @@
 
 
   // 논리(Boolean) 연산
-  
+
   // SCSS
   $w: 100px;
   .item {
@@ -322,5 +322,120 @@
   .item {
     display: block;
     width: 400px;
+  }
+  
+
+// 재활용(Mixins)
+// 스타일시트 전체에서 재사용 할 CSS 선언 그룹을 정의하는 기능
+// 선언하기(@Mixin)와 포함하기(@include)
+
+// @mixin
+
+// SCSS
+@mixin large-text {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: orange;
+}
+
+//Sass
+// =large-text
+//   font-size: 22px
+//   font-weight: bold
+//   font-family: sans-serif
+//   color: orange
+
+// SCSS
+@mixin size ($w: 100px, $h: 100px) {
+    // $w, $h가 기본이지만 디폴트값 주고 싶을때 위처럼
+    width: $w;
+    height: $h;
+}
+
+.box1 {
+    @include size(200px, 400px);
+}
+.box2 {
+    @include size($h: 300px);
+}
+.box3 {
+    @include size;
+}
+
+// CSS
+
+.box1 {
+    width: 200px;
+    height: 400px;
+}
+  
+.box2 {
+    width: 100px;
+    height: 300px;
+}
+  
+.box3 {
+    width: 100px;
+    height: 100px;
+}
+
+// Mixin은 선택자를 포함 가능하고 상위(부모) 요소 참조도 할수 있다.
+
+@mixin large-text {
+    font: {
+        size: 22px;
+        weight: bold;
+        family: sans-serif;
+    }
+    color: orange;
+
+    &::after {
+        content: "!!";
+    }
+    
+    span.icon {
+        background: url("/images/icon.png");
+    }
+}
+
+.box1 {
+    @include large-text;
+} 
+
+.box2 {
+    @include large-text;
+}
+
+// CSS
+
+.box1 {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: orange;
+  }
+  
+  .box1::after {
+    content: "!!";
+  }
+  
+  .box1 span.icon {
+    background: url("/images/icon.png");
+  }
+  
+  .box2 {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: orange;
+  }
+  
+  .box2::after {
+    content: "!!";
+  }
+  
+  .box2 span.icon {
+    background: url("/images/icon.png");
   }
   
