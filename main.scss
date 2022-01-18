@@ -439,3 +439,34 @@
     background: url("/images/icon.png");
   }
   
+
+  // 인수
+
+  // SCSS
+  @mixin dash-line($width: 1px, $color: black) {
+      border: $width dashed $color;
+  } 
+
+  .box1 { @include dash-line; }
+  .box2 { @include dash-line(4px, blue); }
+
+  // 인수 - 키워드 인수
+  // @mixin 믹스인이름($매개변수A: 기본값, $매개변수B: 기본값) {
+  //    스타일;
+  // }
+  
+  // @include 믹스인이름($매개변수B: 인수)
+
+  .box3 { @include dash-line($color: blue); }
+
+
+  // CSS
+  .box1 {
+    border: 1px dashed red;
+  }
+  .box2 {
+    border: 4px dashed blue;
+  }
+  .box3 {
+    border: 1px dashed blue;
+  }  
