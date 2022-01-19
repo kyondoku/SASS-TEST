@@ -470,3 +470,81 @@
   .box3 {
     border: 1px dashed blue;
   }  
+
+
+  // 가변 인수
+@mixin var ($w, $h, $bg...) {
+    width: $w;
+    height: $h;
+    background: $bg;
+}
+
+.box {
+    @include var(
+        100px, 
+        200px, 
+        url("image/a.png") no-repeat 10px 20px,
+        url("image/b.png") no-repeat,
+        url("image/c.png")
+    );
+}
+
+@mixin font(
+    $style: normal,
+    $weight: normal,
+    $size: 16px,
+    $family: sans-serif
+) {
+    font: {
+        style: $style;
+        weight: $weight;
+        size: $size;
+        family: $family;
+    }
+}
+
+div {
+    // 매개변수 순서와 개수에 맞게 전달
+    $font-values: italic, bold, 16px, sans-serif;
+    @include font($font-values...);
+}
+span {
+    // 필요한 값만 키워드 인수로 변수에 담아 전달
+    $font-values: (style: italic, size: 22px);
+    @include font($font-values...);
+}
+a {
+    // 필요한 값만 키워드 인수로 전달
+    @include font((weight: 900, family: monospace)...);
+}
+  
+
+// CSS
+
+.box {
+    width: 100px;
+    height: 200px;
+    background: url("image/a.png") no-repeat 10px 20px, url("image/b.png") no-repeat, url("image/c.png");
+  }
+  
+  div {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: sans-serif;
+  }
+  
+  span {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 22px;
+    font-family: sans-serif;
+  }
+  
+  a {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    font-family: monospace;
+  }
+  
