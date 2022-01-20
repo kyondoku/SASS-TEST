@@ -548,3 +548,49 @@ a {
     font-family: monospace;
   }
   
+
+  // @Content
+  // 선언된 Mixin에 @Content가 포함되어 있다면 해당 부분에 원하는 스타일 블록을 전달할 수 있다.
+  // 이 방식을 사용하여 기존 Mixin이 가지고 있는 기능에 선택자나 속성 등을 추가할 수 있다.
+
+  @mixin icon($url) {
+    &::after {
+        content: $url;
+        @content;
+    }
+}
+
+.box1 {
+    @include icon("image/icon1.png");
+}
+
+.box2 {
+    @include icon("image/icon2.png") {
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+    };
+}
+
+// CSS
+
+@mixin icon($url) {
+    &::after {
+        content: $url;
+        @content;
+    }
+}
+
+.box1 {
+    @include icon("image/icon1.png");
+}
+
+.box2 {
+    @include icon("image/icon2.png") {
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+    };
+}
