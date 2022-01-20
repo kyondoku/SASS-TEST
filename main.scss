@@ -594,3 +594,82 @@ a {
         height: 100px;
     };
 }
+
+
+// 확장(Extend)
+// 특정 선택자가 다른 선택자의 모든 스타일을 가져야할때 사용, 상속 개념과 유사
+
+// SCSS
+.btn {
+    padding: 10px;
+    margin: 10px;
+    background: blue;
+}
+.btn-danger {
+    @extend .btn;
+    background: red;
+}
+
+// CSS
+
+.btn, .btn-danger {
+    padding: 10px;
+    margin: 10px;
+    background: blue;
+}
+  
+  .btn-danger {
+    background: red;
+}
+  
+// 그럼에도 확장을 추천하지 않는 이유
+// , 로 구분하는 다중선택자가 만들어진다.
+// 고려해야 하는 사항들
+// 1. 내 현재 선택자(위의 .btn-danger)가 어디에 첨부될 것인가?
+// 2. 원치 않는 부작용이 초래될 수도 있는가?
+// 3. 한번의 확장으로 얼마나 큰 CSS가 생성되는가?
+
+// 따라서 권장하지 않는다. Mixin을 대체 기능으로 사용하는것이 더 좋음
+
+.container {
+    width: 300px;
+    height: 300px;
+    background: red;
+    .item {
+        width: 200px;
+        height: 200px;
+        background: blue;
+        .icon {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    }
+}
+
+.wrapper {
+    .new-icon {
+        @extend .icon;
+    }
+}
+
+// CSS
+
+.container {
+    width: 300px;
+    height: 300px;
+    background: red;
+  }
+  
+  .container .item {
+    width: 200px;
+    height: 200px;
+    background: blue;
+  }
+  
+  .container .item .icon, .container .item .wrapper .new-icon, .wrapper .container .item .new-icon {
+    width: 100px;
+    height: 100px;
+    background: green;
+  }
+  
