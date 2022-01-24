@@ -673,3 +673,46 @@ a {
     background: green;
   }
   
+
+// 함수(Functions)
+// Mixin과 거의 유사하지만 반환되는 내용이 다르다
+// Mixin은 스타일을 반환하지만, 함수는 연산된 특정값을 @return 지시어를 통해 반환한다.
+
+@function columns($number: 1, $columns: 12, $width: 1200px) {
+    @return $width * ($number / $columns);
+}
+
+.container {
+    $width: 1200px;
+    width: $width;
+    .item:nth-child(1) {
+        width: columns();
+    }
+    .item:nth-child(2) {
+        width: columns(8);
+    }
+    .item:nth-child(3) {
+        width: columns(3);
+    }
+}
+
+// CSS
+
+.container {
+    width: 1200px;
+  }
+  
+  .container .item:nth-child(1) {
+    width: 100px;
+  }
+  
+  .container .item:nth-child(2) {
+    width: 800px;
+  }
+  
+  .container .item:nth-child(3) {
+    width: 300px;
+  }
+
+  
+  
