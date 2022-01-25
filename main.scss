@@ -715,4 +715,40 @@ a {
   }
 
   
+// 함수 - 이름 중복
+// 함수는  @include와 같은 별도의 지시어없이 사용하기 때문에 내가 지정한 함수와 내장 함수의 이름이 충돌할 수 있다.
+// 따라서 별도의 접두어를 붙여주는 것이 좋다.
+
+// 함수 - 조건과 반복
+// if(조건, 표현식1, 표현식2) - 삼항연산자와 비슷하다
+
+$width: 555px;
+div {
+    width: if($width > 300px, $width, null); // null이 들어가면 함수를 사용하지 않겠다는 의미
+}
+
+
+$w1: 100px;
+$w2: 555px;
+.div1 {
+    width: if($w1 > 300px, $w1, null);
+    height: 100px;
+}
+.div2 {
+    width: if($w2 > 300px, $w2, null);
+    height: 100px;
+}
+
+// CSS
+
+.div1 {
+    height: 100px;
+}
+  
+.div2 {
+    width: 555px;
+    height: 100px;
+}
+
+
   
