@@ -751,4 +751,47 @@ $w2: 555px;
 }
 
 
-  
+// @if(지시어)
+// @else, if가 있음
+
+// 조건에 ()는 생략이 가능
+$bg: true;
+div {
+    @if $bg {
+        background: url("/images/a.jpg");
+    }
+}
+
+$color: orange;
+div {
+    @if $color == strawberry {
+        color: #FE2E2E;
+    } @else if $color == orange {
+        color: #FE9A2E;
+    } @else if $color == banana {
+        color: #FFFF00;
+    } @else {
+        color: #2A1B0A;
+    }
+}
+
+@function limitSize($size) {
+    @if ($size >= 0 and $size <= 200px) {
+        @return 200px;
+    } @else {
+        @return 800px;
+    }
+}
+
+div {
+    width: limitSize(180px);
+    height: limitSize(340px);
+}
+
+// CSS
+
+div {
+    width: 200px;
+    height: 800px;
+  }
+
