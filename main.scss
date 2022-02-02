@@ -849,3 +849,42 @@ div {
     margin: auto;
   }
   
+
+// @for
+// through 를 사용하는 형시과 to를 사용하는 형식으로 나뉜다.
+// 변수는 관례상 $i를 사용한다.
+
+@for $index from 4 through 6 {
+    .through:nth-child(#{$index}) {
+        width: 20px * $index;
+    }
+}
+
+@for $index from 4 to 6 {
+    .to:nth-child(#{$index}) {
+        width: 20px * $index;
+    }
+}
+
+// CSS
+
+.through:nth-child(4) {
+    width: 80px;
+}
+
+.through:nth-child(5) {
+    width: 100px;
+}
+
+.through:nth-child(6) {
+    width: 120px;
+}
+
+.to:nth-child(4) {
+    width: 80px;
+}
+
+.to:nth-child(5) {
+    width: 100px;
+}
+  
