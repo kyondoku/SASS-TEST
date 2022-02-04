@@ -976,3 +976,22 @@ $fruits-data: (
     background: url("/images/japan.png");
   }
   
+
+// @while 
+// 조건이 false가 될 때까지 반복
+// 사용 권장하지 않음 -> 무한루프 가능성이 있으므로
+
+$i: 6;
+
+@while $i > 0 {
+    .item-#{$i} {
+        width: 2px * $i;
+    }
+    $i: $i - 2;
+}
+
+// CSS
+
+.item-6 {width: 12px;}
+.item-4 {width: 8px;}
+.item-2 {width: 4px;}
