@@ -995,3 +995,13 @@ $i: 6;
 .item-6 {width: 12px;}
 .item-4 {width: 8px;}
 .item-2 {width: 4px;}
+
+
+// 내장함수
+// Sass에서 기본적으로 제공하는 함수 -> Sass Built-in Functions로 검색하면 확인 가능
+// []는 선택 가능한 인수
+// Zero-based numbering을 사용하지 않는다. 
+
+// [] example
+// str-slice($string, $start-at, [$end-at]) []의 기본값은 -1
+// str-slice(string, 3) -> 3번째글자부터 마지막글자까지
